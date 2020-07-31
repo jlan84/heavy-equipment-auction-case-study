@@ -1,7 +1,27 @@
-# Predict Heavy Equipment Auction Price
+# <div align="center">_**Predicting Heavy Equipment Price**_</div>
+## <div align="center">_**Team V: Justin, Alex W. and Chuck - Regression Case - July 31, 2020**_</div>
 
+![header image](https://github.com/jlan84/regression-case-study/blob/master/predict_auction_price/images/construction.png)
 
-## Features to Keep
+## The Data:
+The data is split into three parts:
+
+**Train.csv** is the training set, which contains data through the end of 2011.
+**Valid.csv** is the validation set, which contains data from January 1, 2012 - April 30, 2012 You make predictions on this set throughout the majority of the competition. Your score on this set is used to create the public leaderboard.
+**Test.csv** is the test set, which won't be released until the last week of the competition. It contains data from May 1, 2012 - November 2012. Your score on the test set determines your final rank for the competition.
+The key fields are in train.csv are:
+
+**SalesID:** the uniue identifier of the sale
+**MachineID:** the unique identifier of a machine.  A machine can be sold multiple times
+**saleprice:** what the machine sold for at auction (only provided in train.csv)
+**saledate:** the date of the sale
+
+There are several fields towards the end of the file on the different options a machine can have.  The descriptions all start with _"machine configuration"_ in the data dictionary.  Some product types do not have a particular option, so all the records for that option variable are null for that product type.  Also, some sources did not provide good option and/or hours data.
+The _machine_appendix.csv_ file contains the correct year manufactured for a given machine along with the make, model, and product class details. There is one machine id for every machine in all the competition datasets (training, evaluation, etc.).
+
+We will clean the data in two passes. The first will take advantage of intuitive selection of meaningful features. Secondly, we will immediately perform a scatter matrix to identify features that don't offer value based on a noticeable lack of correlation. 
+
+## Features to Keep:
 YearMade
 Machine Hours
 Saledate
@@ -33,13 +53,20 @@ Blade_Width
 Hydraulic_Flow
 
 
-## Case Study Goal
+## Case Study Goal:
 Predict the sale price of a particular piece of heavy equipment at auction based
 on its usage, equipment type, and configuration.  The data is sourced from auction
 result postings and includes information on usage and equipment configurations.
 
+## Team Organization:
+We approached this project from a divide and conquer perspective. Firstly, discussing the problem at hand, and the features that are given. Which needed to be included, cleaned and analyzed. Alex initially focused on the cleaning of the data and creating usable quantitative values for the data on an individual column level. While Justin attacked cleaning from additional directions, and keeping/removing columns of greater importance or non-value added features. Chuck focused directly on constructing the necessary functions for cross validation, various alpha applications and selecting optimal alpha. For both Ridge and Lasso.
+
+Upon realizing clean and organized data, we all regathered to implement the functions. Analyzing results and selecting the best direction to move forward with predicting 2012 prices for equipment based on the provided features.
+
+We all worked on the README report as individual assignments were completed - updating it based on the person with the greatest knowledge of the divided workload.
+
 ## Evaluation
-The evaluation of your model will be based on Root Mean Squared Log Error.
+The evaluation of our model has been based on Root Mean Squared Log Error.
 Which is computed as follows:
 
 ![Root Mean Squared Logarithmic Error](images/rmsle.png)
@@ -47,65 +74,11 @@ Which is computed as follows:
 where *p<sub>i</sub>* are the predicted values (predicted auction sale prices) 
 and *a<sub>i</sub>* are the actual values (the actual auction sale prices).
 
-Note that this loss function is sensitive to the *ratio* of predicted values to
-the actual values, a prediction of 200 for an actual value of 100 contributes
-approximately the same amount to the loss as a prediction of 2000 for an actual
-value of 1000.  To convince yourself of this, recall that a difference of
-logarithms is equal to a single logarithm of a ratio, and rewrite each summand
-as a single logarithm of a ratio.
+## Data Cleaning and Preperation:
+ENTER DATA CLEANING AND DETAILS HERE
 
-This loss function is implemented in score_model.py.
 
-## Data
-The data for this case study are in `./data`. Although there are both training
-and testing data sets, the testing data set should only be utilized to evaluate
-your final model performance at the end of the day.  Think about it as your
-hold out set.  Use cross-validation on the training data set to identify your
-best model and then score your best model on the test data at the end of the day.
-By using the same test data and the same evaluation metric (RMSLE) the relative
-performance of different group's models on this case study can be assessed.
 
-A data dictionary is included that explains the columns in the data.
-
-## Restrictions
-Please use only *regression* methods for this case study.  The following techniques 
-are legal
-
-  - Linear Regression.
-  - Logistic Regression.
-  - Median Regression (linear regression by minimizing the sum of absolute deviations).
-  - Any other [GLM](http://statsmodels.sourceforge.net/devel/glm.html).
-  - Regularization: Ridge and LASSO.
-
-You may use other models or algorithms as supplements (for example, in feature
-engineering), but your final submissions must be scores from a linear type
-model.
-
-## Important Tips
-
-1. This data is quite messy. Try to use your judgement about where your
-cleaning efforts will yield the most results and focus there first.
-2. Because of the restriction to linear models, you will have to carefully
-consider how to transform continuous predictors in your model.
-3. Remember any transformations you apply to the training data will also have
-to be applied to the testing data, so plan accordingly.
-4. Any transformations of the training data that *learn parameters* (for
-example, standardization learns the mean and variance of a feature) must only
-use parameters learned from the *training data*.
-5. It's possible some columns in the test data will take on values not seen in
-the training data. Plan accordingly.
-6. Use your intuition to *think about where the strongest signal about a price
-is likely to come from*. If you weren't fitting a model, but were asked to use
-this data to predict a price what would you do? Can you combine the model with
-your intuitive instincts?  This is important because it can be done *without
-looking at the data*; thinking about the problem has no risk of overfitting.
-7. Start simply. Fit a basic model and make sure you're able to get the
-submission working then iterate to improve. 
-8. Remember that you are evaluated on a loss function that is only sensitive to
-the *ratios* of predicted to actual values.  It's almost certainly too much of
-a task to implement an algorithm that minimizes this loss function directly in
-the time you have, but there are some steps you can take to do a good job of
-it.    
 
 
 ## Overview of the score_model.py script
