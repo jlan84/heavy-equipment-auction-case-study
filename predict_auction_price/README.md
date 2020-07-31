@@ -1,5 +1,38 @@
 # Predict Heavy Equipment Auction Price
 
+
+## Features to Keep
+YearMade
+Machine Hours
+Saledate
+Saleprice
+ProductSize
+State
+ProductGroupDesc
+Product 
+DriveSystem
+Enclosure
+Forks
+Pad_Type
+Ride_Type
+Transmission
+Turbocharged
+Tip_Control
+Track_Type
+Coupler
+Differential Steer
+Blade_Type
+Thumb
+Grouser_type
+Blade_type
+Differential_Type
+Steering_Control
+Backhoe_Mounting
+Pattern_Changer
+Blade_Width
+Hydraulic_Flow
+
+
 ## Case Study Goal
 Predict the sale price of a particular piece of heavy equipment at auction based
 on its usage, equipment type, and configuration.  The data is sourced from auction
