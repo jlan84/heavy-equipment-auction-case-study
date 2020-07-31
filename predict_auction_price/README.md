@@ -1,4 +1,7 @@
-# Predict Heavy Equipment Auction Price
+# <div align="center">_**Predicting Heavy Equipment Price**_</div>
+## <div align="center">_**Team V, Justin, Alex W. and Chuck - Regression Case - July 24, 2020**_</div>
+
+![header image](https://github.com/jlan84/regression-case-study/blob/master/predict_auction_price/images/construction.png)
 
 
 ## Features to Keep
