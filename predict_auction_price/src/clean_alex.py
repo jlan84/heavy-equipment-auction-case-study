@@ -14,24 +14,19 @@ if __name__ == '__main__':
     # print(df_train['state'].unique())
     # print(df_train['Stick'].unique())
     month_df = pd.to_datetime(df_train['saledate'])
-    
+    df_train['saledate'] = month_df
+    recent_year_mask = df_train['saledate'].dt.year >=2004
+    recent_sale_df = df_train[recent_year_mask]
+    print(df_train.info())
+    print(recent_sale_df.info())
     month_dummy_df = pd.get_dummies(month_df.dt.month)
     year_dummy_df = pd.get_dummies(month_df.dt.year)
     # print(month_dummy_df.head(10))
     # print(month_dummy_df.sum())
-
+    recent_sale_df.to_csv('../data/recent_sales.csv')
     # print(year_dummy_df.head(10))
     # print(year_dummy_df.sum())
 
 
     month_dummy_df['saleprice'] = df_train['SalePrice']
     # print(month_dummy_df.head())
-
-    X = month_dummy_df.copy()
-    X = X.drop(3, axis=1)
-    y = X.pop('saleprice')
-
-    X = sm.add_constant(X)
-    model = sm.OLS(y, X).fit()
-    summary = model.summary()
-    print(summary)
